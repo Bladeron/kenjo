@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AlbumModule } from './albums/album.module';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularMaterialModule } from './angular-material.module'; 
+
 
 
 @NgModule({
@@ -15,7 +18,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AlbumModule
+    AlbumModule,
+    BrowserAnimationsModule,
+    AngularMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
