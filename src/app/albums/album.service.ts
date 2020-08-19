@@ -13,6 +13,7 @@ export class AlbumService {
   }
 
   getAllAlbums() {
+    console.log('service')
     return this.http.get(BACKEND_URL + 'all');
   }
 }
