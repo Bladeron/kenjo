@@ -7,6 +7,7 @@ import { AlbumModule } from './albums/album.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module'; 
+import { ArtistModule } from './artists/artist.module';
 
 
 
@@ -19,6 +20,7 @@ import { AngularMaterialModule } from './angular-material.module';
     AppRoutingModule,
     HttpClientModule,
     AlbumModule,
+    ArtistModule,
     BrowserAnimationsModule,
     AngularMaterialModule
   ],
