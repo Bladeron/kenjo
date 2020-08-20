@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { Album } from '../albums/album.model';
 
+
 const BACKEND_URL = environment.apiURL;
 
 
@@ -45,5 +46,19 @@ export class AlbumService {
 
   deleteAlbum(albumId: string) {
     return this.http.delete(BACKEND_URL + 'album/' + albumId);
+  }
+
+  updateAlbum(id: string, title: string, year, genre: string){
+    
+    const albumData = {
+      id: id,
+      title: title,
+      year: year,
+      genre: genre
+    }
+
+    this.http.put(BACKEND_URL + '/album/' + id, albumData).subscribe(response => {
+      this.router.navigate(['/']);
+    })
   }
 }

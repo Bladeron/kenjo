@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { AlbumService } from "../album.service";
 import { Album } from '../album.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-album-list',
@@ -10,10 +11,10 @@ import { Album } from '../album.model';
 
 export class AlbumComponent implements OnInit {
 
-  albums: Album[] = [];
+  albums: any = [];
   isLoading = false;
 
-  constructor(public albumService: AlbumService ) { }
+  constructor(public albumService: AlbumService, public router: Router ) { }
 
   ngOnInit() {
     this.isLoading = true;
@@ -34,9 +35,8 @@ export class AlbumComponent implements OnInit {
   onDelete(albumId: string){
     this.isLoading = true;
     this.albumService.deleteAlbum(albumId).subscribe(() => {
-      this.albumService.getAllAlbums();
-    }, () => {
       this.isLoading = false;
+      this.router.navigate(['/']); 
     });
   }
 

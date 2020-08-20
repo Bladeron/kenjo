@@ -58,12 +58,11 @@ export class AlbumCreateComponent implements OnInit {
 
   onSaveAlbum() {
     this.isLoading = true;
-
-    this.albumService.addAlbum(
-      this.form.value.title,
-      this.form.value.year,
-      this.form.value.genre
-    );
+    if(this.mode === 'create') {
+      this.albumService.addAlbum(this.form.value.title, this.form.value.year, this.form.value.genre);
+    } else {
+      this.albumService.updateAlbum(this.albumId, this.form.value.title, this.form.value.year, this.form.value.genre)
+    }
     this.form.reset();
   }
 }

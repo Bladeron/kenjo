@@ -5,7 +5,7 @@ import { AlbumCreateComponent } from './albums/album-create/album-create.compone
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
+  { path: '', component: AlbumComponent },
   { path: 'albums', component: AlbumComponent },
   { path: 'create', component: AlbumCreateComponent },
   { path: 'edit/:albumId', component: AlbumCreateComponent },
