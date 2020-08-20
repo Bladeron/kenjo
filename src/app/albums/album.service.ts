@@ -14,8 +14,18 @@ export class AlbumService {
   }
 
   getAllAlbums() {
-    console.log('service getAllAlbums')
     return this.http.get(BACKEND_URL + 'albums/all');
+  }
+
+  getAlbum(albumId: string){
+    return this.http.get<{
+      _id: string;
+      title: string;
+      artistId: string;
+      coverUrl: string;
+      year: number;
+      genre: string;
+    }>(BACKEND_URL + 'album/' + albumId)
   }
 
   addAlbum(title: string, year, genre: string) {
@@ -31,5 +41,9 @@ export class AlbumService {
       console.log(response);
       this.router.navigate(['/']);
     });
+  }
+
+  deleteAlbum(albumId: string) {
+    return this.http.delete(BACKEND_URL + 'album/' + albumId);
   }
 }

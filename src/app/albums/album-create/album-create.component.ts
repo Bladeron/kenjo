@@ -1,6 +1,8 @@
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AlbumService } from '../album.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Album } from '../album.model';
 
 @Component({
   selector: 'app-album-create',
@@ -10,8 +12,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class AlbumCreateComponent implements OnInit {
   isLoading = false;
   form: FormGroup;
+  private mode = 'create';
+  private albumId: string;
+  album: Album; 
 
-  constructor(public albumService: AlbumService) {}
+  constructor(public albumService: AlbumService, public route: ActivatedRoute) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -21,13 +26,39 @@ export class AlbumCreateComponent implements OnInit {
       year: new FormControl(null, { validators: [Validators.required] }),
       genre: new FormControl(null, { validators: [Validators.required] }),
     });
+
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if (paramMap.has('albumId')) {
+        this.mode = 'edit';
+        this.albumId = paramMap.get('albumId');
+        this.isLoading = true;
+        console.log('ID', this.albumId)
+        this.albumService.getAlbum(this.albumId).subscribe(albumData => {
+          this.isLoading = false;
+          this.album = {
+            _id: albumData._id,
+            title: albumData.title,
+            artistId: albumData.artistId,
+            coverUrl: albumData.coverUrl,
+            year: albumData.year,
+            genre: albumData.genre,
+          };
+          this.form.setValue({
+            title: this.album.title,
+            year: this.album.year,
+            genre: this.album.genre
+          });
+        });
+      } else {
+        this.mode = 'create';
+        this.albumId = null;
+      }
+    });
   }
 
   onSaveAlbum() {
     this.isLoading = true;
 
-    console.log('create component');
-    console.log('FORM', this.form.value)
     this.albumService.addAlbum(
       this.form.value.title,
       this.form.value.year,

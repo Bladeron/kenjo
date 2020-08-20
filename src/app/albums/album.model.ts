@@ -1,8 +1,8 @@
 export interface Album {
-  id: string;
+  _id: string;
   title: string;
   artistId: string;
-  coverUel: string;
+  coverUrl: string;
   year: number;
   genre: string;
 }
