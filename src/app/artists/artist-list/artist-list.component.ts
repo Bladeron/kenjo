@@ -9,35 +9,35 @@ import { Router } from '@angular/router';
   styleUrls: ['./artist-list.component.css']
 })
 
-export class ArtistListomponent implements OnInit {
+export class ArtistListComponent implements OnInit {
 
-  albums: any = [];
+  artists: any = [];
   isLoading = false;
 
   constructor(public artistService: ArtistService, public router: Router ) { }
 
   ngOnInit() {
-    /*this.isLoading = true;
-    this.albumSerartistServicevice
-      .getAllAlbums()
-      .subscribe((albumData) => {
-        console.log('Albumdata en album component ts', albumData)
+    this.isLoading = true;
+    this.artistService
+      .getAllArtists()
+      .subscribe((artistData) => {
+        console.log(artistData)
         this.isLoading = false;
-        this.albums = albumData;
+        this.artists = artistData;
     });
   }
 
   getAll() {
     console.log('component')
-    return this.artistService.getAllAlbums().subscribe(data => console.log(data))
+    return this.artistService.getAllArtists().subscribe(data => console.log(data))
   }
 
   onDelete(albumId: string){
     this.isLoading = true;
-    this.artistService.deleteAlbum(albumId).subscribe(() => {
+    this.artistService.deleteArtist(albumId).subscribe(() => {
       this.isLoading = false;
       this.router.navigate(['/']); 
-    });*/
+    });
   }
 
 }

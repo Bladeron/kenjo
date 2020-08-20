@@ -1,0 +1,34 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form [formGroup]="form" (submit)="onSaveArtist()" *ngIf="!isLoading">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        formControlName="name"
+        placeholder="Artist Name">
+        <!-- <mat-error *ngIf="form.get('name').invalid">Name is required</mat-error> -->
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        formControlName="birthdate"
+        placeholder="Artist birth date">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        formControlName="deathDate"
+        placeholder="Artist death date">
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="accent"
+      type="submit">Save Artist</button>
+  </form>
+</mat-card>

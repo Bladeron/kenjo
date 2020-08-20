@@ -13,45 +13,44 @@ export class ArtistCreateComponent implements OnInit {
   isLoading = false;
   form: FormGroup;
   private mode = 'create';
-  private albumId: string;
-  //album: Album; 
+  private artistID: string;
+  artist: Artist; 
 
   constructor(public artistService: ArtistService, public route: ActivatedRoute) {}
 
   ngOnInit() {
-    /* this.form = new FormGroup({
-      title: new FormControl(null, {
+    this.form = new FormGroup({
+      name: new FormControl(null, {
         validators: [Validators.required, Validators.minLength(3)],
       }),
-      year: new FormControl(null, { validators: [Validators.required] }),
-      genre: new FormControl(null, { validators: [Validators.required] }),
+      birthdate: new FormControl(null, { validators: [Validators.required] }),
+      deathDate: new FormControl(null, { validators: [Validators.required] }),
     });
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if (paramMap.has('albumId')) {
+      if (paramMap.has('artistId')) {
         this.mode = 'edit';
-        this.albumId = paramMap.get('albumId');
+        this.artistID = paramMap.get('artistId');
         this.isLoading = true;
-        console.log('ID', this.albumId)
-        this.albumService.getAlbum(this.albumId).subscribe(albumData => {
+        console.log('ID', this.artistID)
+        this.artistService.getArtist(this.artistID).subscribe(albumData => {
           this.isLoading = false;
-          this.album = {
-            _id: albumData._id,
-            title: albumData.title,
-            artistId: albumData.artistId,
-            coverUrl: albumData.coverUrl,
-            year: albumData.year,
-            genre: albumData.genre,
+          this.artist = {
+            id: albumData.id,
+            name: albumData.name,
+            photoUrl: albumData.photoUrl,
+            birthdate: albumData.birthdate,
+            deathDate: albumData.deathDate
           };
           this.form.setValue({
-            title: this.album.title,
-            year: this.album.year,
-            genre: this.album.genre
+            name: this.artist.name,
+            birthdate: this.artist.birthdate,
+            deathDate: this.artist.deathDate
           });
         });
       } else {
         this.mode = 'create';
-        this.albumId = null;
+        this.artistID = null;
       }
     });
   }
@@ -59,10 +58,10 @@ export class ArtistCreateComponent implements OnInit {
   onSaveAlbum() {
     this.isLoading = true;
     if(this.mode === 'create') {
-      this.albumService.addAlbum(this.form.value.title, this.form.value.year, this.form.value.genre);
+      this.artistService.addArtist(this.form.value.name, this.form.value.photoUrl, this.form.value.birthdate, this.form.value.deathDate);
     } else {
-      this.albumService.updateAlbum(this.albumId, this.form.value.title, this.form.value.year, this.form.value.genre)
+      this.artistID.updateAlbum(this.artistID, this.form.value.name, this.form.value.birthdate, this.form.value.deathDate)
     }
-    this.form.reset(); */
+    this.form.reset(); 
   } 
 }

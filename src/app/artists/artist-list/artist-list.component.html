@@ -1,0 +1,17 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-accordion multi="true" *ngIf="artists.length > 0 && !isLoading">
+  <mat-expansion-panel *ngFor="let artist of artists">
+    <mat-expansion-panel-header>
+      {{ artist.name }}
+    </mat-expansion-panel-header>
+
+    <p>{{ artist.photoUrl }}</p>
+    <p>{{ artist.birthdate }}</p>
+    <p>{{ artist.deathDate }}</p>
+    <mat-action-row>
+      <a mat-button color="primary" [routerLink]="['/edit/artist/', artist._id]">EDIT</a>
+      <button mat-button color="warn" (click)="onDelete(artist._id)">DELETE</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<p class="info-text mat-body-1" *ngIf="artists.length <= 0 && !isLoading">No artists added yet!</p>
