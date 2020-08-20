@@ -16,44 +16,44 @@ export class ArtistService {
 
   getArtist(artistId: string) {
     return this.http.get<{
-      _id: string;
-      title: string;
-      artistId: string;
-      coverUrl: string;
-      year: number;
-      genre: string;
+      id: string;
+      name: string;
+      photoUrl: string;
+      birthdate: Date;
+      deathDate: Date;
     }>(BACKEND_URL + 'artist/' + artistId);
   }
 
-  addAlbum(title: string, year, genre: string) {
-    console.log(title, year, genre);
+  addArtist(name: string, photoUrl: string, birthdate: Date, deathDate: Date) {
 
-    const albumData = {
-      title: title,
-      year: year,
-      genre: genre,
+    const artistData = {
+      name: name,
+      photoUrl: photoUrl,
+      birthdate: birthdate,
+      deathDate: deathDate
     };
 
-    this.http.post(BACKEND_URL + 'album', albumData).subscribe((response) => {
+    this.http.post(BACKEND_URL + 'artist', artistData).subscribe((response) => {
       console.log(response);
       this.router.navigate(['/']);
     });
   }
 
-  deleteAlbum(albumId: string) {
-    return this.http.delete(BACKEND_URL + 'album/' + albumId);
+  deleteArtist(artistId: string) {
+    return this.http.delete(BACKEND_URL + 'artist/' + artistId);
   }
 
-  updateAlbum(id: string, title: string, year, genre: string) {
-    const albumData = {
+  updateArtist(id: string, name: string, photoUrl: string, birthdate: Date, deathDate: Date) {
+    const artistData = {
       id: id,
-      title: title,
-      year: year,
-      genre: genre,
+      name: name,
+      photoUrl: photoUrl,
+      birthdate: birthdate,
+      deathDate: deathDate
     };
 
     this.http
-      .put(BACKEND_URL + '/album/' + id, albumData)
+      .put(BACKEND_URL + '/artist/' + id, artistData)
       .subscribe((response) => {
         this.router.navigate(['/']);
       });
