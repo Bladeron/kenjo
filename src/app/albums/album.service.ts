@@ -29,11 +29,13 @@ export class AlbumService {
     }>(BACKEND_URL + 'album/' + albumId)
   }
 
-  addAlbum(title: string, year, genre: string) {
+  addAlbum(title: string, artistId:string, coverUrl: string, year, genre: string) {
     console.log(title, year, genre)
 
     const albumData = {
       title: title,
+      artistId: artistId,
+      coverUrl: coverUrl,
       year: year,
       genre: genre
     }
@@ -48,11 +50,13 @@ export class AlbumService {
     return this.http.delete(BACKEND_URL + 'album/' + albumId);
   }
 
-  updateAlbum(id: string, title: string, year, genre: string){
+  updateAlbum(id: string, title: string, artistId:string, coverUrl: string, year, genre: string){
     
     const albumData = {
       id: id,
       title: title,
+      artistId: artistId,
+      coverUrl: coverUrl,
       year: year,
       genre: genre
     }

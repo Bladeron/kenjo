@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { AlbumService } from '../album.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Album } from '../album.model';
+import { Artist } from 'src/app/artists/artist.model';
+import { ArtistService } from 'src/app/artists/artist.service';
 
 @Component({
   selector: 'app-album-create',
@@ -14,17 +16,28 @@ export class AlbumCreateComponent implements OnInit {
   form: FormGroup;
   private mode = 'create';
   private albumId: string;
-  album: Album; 
+  album: Album;
+  artistList: any = [];
 
-  constructor(public albumService: AlbumService, public route: ActivatedRoute) {}
+  constructor(
+    public albumService: AlbumService,
+    public route: ActivatedRoute,
+    public artistService: ArtistService
+  ) {}
 
   ngOnInit() {
     this.form = new FormGroup({
       title: new FormControl(null, {
         validators: [Validators.required, Validators.minLength(3)],
       }),
+      artistId: new FormControl(null, { validators: [Validators.required] }),
       year: new FormControl(null, { validators: [Validators.required] }),
       genre: new FormControl(null, { validators: [Validators.required] }),
+    });
+
+    this.artistService.getAllArtists().subscribe((artistData) => {
+      this.artistList = artistData;
+      console.log('Lista artistas', this.artistList);
     });
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -32,8 +45,9 @@ export class AlbumCreateComponent implements OnInit {
         this.mode = 'edit';
         this.albumId = paramMap.get('albumId');
         this.isLoading = true;
-        console.log('ID', this.albumId)
-        this.albumService.getAlbum(this.albumId).subscribe(albumData => {
+
+        this.albumService.getAlbum(this.albumId).subscribe((albumData) => {
+          console.log('album data en create', albumData);
           this.isLoading = false;
           this.album = {
             _id: albumData._id,
@@ -43,10 +57,11 @@ export class AlbumCreateComponent implements OnInit {
             year: albumData.year,
             genre: albumData.genre,
           };
-          this.form.setValue({
+          this.form.patchValue({
             title: this.album.title,
+            artistId: this.album.artistId,
             year: this.album.year,
-            genre: this.album.genre
+            genre: this.album.genre,
           });
         });
       } else {
@@ -58,10 +73,23 @@ export class AlbumCreateComponent implements OnInit {
 
   onSaveAlbum() {
     this.isLoading = true;
-    if(this.mode === 'create') {
-      this.albumService.addAlbum(this.form.value.title, this.form.value.year, this.form.value.genre);
+    if (this.mode === 'create') {
+      this.albumService.addAlbum(
+        this.form.value.title,
+        this.form.value.artistId,
+        this.form.value.coverUrl,
+        this.form.value.year,
+        this.form.value.genre
+      );
     } else {
-      this.albumService.updateAlbum(this.albumId, this.form.value.title, this.form.value.year, this.form.value.genre)
+      this.albumService.updateAlbum(
+        this.albumId,
+        this.form.value.title,
+        this.form.value.artistId,
+        this.form.value.coverUrl,
+        this.form.value.year,
+        this.form.value.genre
+      );
     }
     this.form.reset();
   }

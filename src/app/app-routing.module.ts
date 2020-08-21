@@ -8,11 +8,12 @@ import { ArtistListComponent } from './artists/artist-list/artist-list.component
 
 const routes: Routes = [
   { path: '', component: AlbumComponent },
-  { path: 'albums', component: AlbumComponent },
+  { path: 'albums/create', component: AlbumCreateComponent },
+  { path: 'albums/list', component: AlbumComponent },
   { path: 'artist/create', component: ArtistCreateComponent },
   { path: 'artist/list', component: ArtistListComponent },
+  { path: 'albums/:artistId', component: AlbumComponent },
   { path: 'edit/artist/:artistId', component: ArtistCreateComponent },
-  { path: 'create', component: AlbumCreateComponent },
   { path: 'edit/:albumId', component: AlbumCreateComponent },
 ];
 

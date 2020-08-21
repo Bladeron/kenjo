@@ -6,8 +6,18 @@
         matInput
         type="text"
         formControlName="title"
-        placeholder="Album title">
-        <!-- <mat-error *ngIf="form.get('title').invalid">Title is required</mat-error> -->
+        placeholder="Album title"
+      />
+      <mat-error *ngIf="form.get('title').invalid">Title is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Select artist</mat-label>
+      <mat-select formControlName="artistId" [value]=artistId>
+        <mat-option *ngFor="let artist of artistList" [value]="artist._id">
+          {{ artist.name }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
     <mat-form-field>
@@ -15,8 +25,8 @@
         matInput
         type="text"
         formControlName="year"
-        placeholder="Album year">
-        <!-- <mat-error *ngIf="form.get('content').invalid">Content is required</mat-error> -->
+        placeholder="Album year"
+      />
     </mat-form-field>
 
     <mat-form-field>
@@ -24,13 +34,10 @@
         matInput
         type="text"
         formControlName="genre"
-        placeholder="Album genre">
-        <!-- <mat-error *ngIf="form.get('title').invalid">Title is required</mat-error> -->
+        placeholder="Album genre"
+      />
     </mat-form-field>
 
-    <button
-      mat-raised-button
-      color="accent"
-      type="submit">Save Album</button>
+    <button mat-raised-button color="accent" type="submit">Save Album</button>
   </form>
 </mat-card>
