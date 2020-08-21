@@ -40,4 +40,11 @@ export class ArtistListComponent implements OnInit {
     });
   }
 
+  filterByArtist(artistId: string) {
+    return  this.artists.filter(function (el) {
+      return el.title == artistId
+    });
+
+  }
+
 }

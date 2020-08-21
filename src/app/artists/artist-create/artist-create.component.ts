@@ -1,4 +1,4 @@
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ArtistService } from '../artist.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -16,7 +16,7 @@ export class ArtistCreateComponent implements OnInit {
   private artistId: string;
   artist: Artist; 
 
-  constructor(public artistService: ArtistService, public route: ActivatedRoute) {}
+  constructor(public artistService: ArtistService, public route: ActivatedRoute, public router: Router) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -62,6 +62,7 @@ export class ArtistCreateComponent implements OnInit {
     } else {
       this.artistService.updateArtist(this.artistId, this.form.value.name, this.form.value.photoUrl, this.form.value.birthdate, this.form.value.deathDate)
     }
+    this.router.navigate(['/']);
     this.form.reset(); 
   } 
 }
