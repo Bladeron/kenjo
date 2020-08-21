@@ -13,7 +13,7 @@ export class ArtistCreateComponent implements OnInit {
   isLoading = false;
   form: FormGroup;
   private mode = 'create';
-  private artistID: string;
+  private artistId: string;
   artist: Artist; 
 
   constructor(public artistService: ArtistService, public route: ActivatedRoute) {}
@@ -30,10 +30,10 @@ export class ArtistCreateComponent implements OnInit {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('artistId')) {
         this.mode = 'edit';
-        this.artistID = paramMap.get('artistId');
+        this.artistId = paramMap.get('artistId');
         this.isLoading = true;
-        console.log('ID', this.artistID)
-        this.artistService.getArtist(this.artistID).subscribe(albumData => {
+        console.log('ID', this.artistId)
+        this.artistService.getArtist(this.artistId).subscribe(albumData => {
           this.isLoading = false;
           this.artist = {
             id: albumData.id,
@@ -50,17 +50,17 @@ export class ArtistCreateComponent implements OnInit {
         });
       } else {
         this.mode = 'create';
-        this.artistID = null;
+        this.artistId = null;
       }
     });
   }
 
-  onSaveAlbum() {
+  onSaveArtist() {
     this.isLoading = true;
     if(this.mode === 'create') {
       this.artistService.addArtist(this.form.value.name, this.form.value.photoUrl, this.form.value.birthdate, this.form.value.deathDate);
     } else {
-      this.artistID.updateAlbum(this.artistID, this.form.value.name, this.form.value.birthdate, this.form.value.deathDate)
+      this.artistService.updateArtist(this.artistId, this.form.value.name, this.form.value.photoUrl, this.form.value.birthdate, this.form.value.deathDate)
     }
     this.form.reset(); 
   } 
