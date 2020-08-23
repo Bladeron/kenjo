@@ -32,7 +32,7 @@ export class ArtistCreateComponent implements OnInit {
         this.mode = 'edit';
         this.artistId = paramMap.get('artistId');
         this.isLoading = true;
-        console.log('ID', this.artistId)
+
         this.artistService.getArtist(this.artistId).subscribe(albumData => {
           this.isLoading = false;
           this.artist = {

@@ -10,13 +10,14 @@ import { AngularMaterialModule } from './angular-material.module';
 import { ArtistModule } from './artists/artist.module';
 import { ErrorComponent } from '../app/error/error.component'; 
 import { ErrorInterceptor } from '../app/error-interceptor'; 
-
+import { HeaderComponent } from '../app/header/header.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorComponent
+    ErrorComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

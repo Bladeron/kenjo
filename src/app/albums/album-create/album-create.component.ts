@@ -37,7 +37,7 @@ export class AlbumCreateComponent implements OnInit {
 
     this.artistService.getAllArtists().subscribe((artistData) => {
       this.artistList = artistData;
-      console.log('Lista artistas', this.artistList);
+
     });
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -47,7 +47,7 @@ export class AlbumCreateComponent implements OnInit {
         this.isLoading = true;
 
         this.albumService.getAlbum(this.albumId).subscribe((albumData) => {
-          console.log('album data en create', albumData);
+
           this.isLoading = false;
           this.album = {
             _id: albumData._id,

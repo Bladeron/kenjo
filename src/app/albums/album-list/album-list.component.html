@@ -5,7 +5,10 @@
       {{ album.title }}
     </mat-expansion-panel-header>
 
+    <p>{{ album.name }}</p>
     <p>{{ album.year }}</p>
+    <p>{{ album.artistId }}</p>
+    <p>{{ album.genre }}</p>
     <mat-action-row>
       <a mat-button color="primary" [routerLink]="['/edit', album._id]">EDIT</a>
       <button mat-button color="warn" (click)="onDelete(album._id)">DELETE</button>

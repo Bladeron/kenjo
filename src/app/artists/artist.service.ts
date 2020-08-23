@@ -34,7 +34,6 @@ export class ArtistService {
     };
 
     this.http.post(BACKEND_URL + 'artist', artistData).subscribe((response) => {
-      console.log(response);
       this.router.navigate(['/']);
     });
   }

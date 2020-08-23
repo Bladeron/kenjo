@@ -30,8 +30,6 @@ export class AlbumService {
   }
 
   addAlbum(title: string, artistId:string, coverUrl: string, year, genre: string) {
-    console.log(title, year, genre)
-
     const albumData = {
       title: title,
       artistId: artistId,
@@ -41,7 +39,6 @@ export class AlbumService {
     }
 
     this.http.post(BACKEND_URL + 'album', albumData).subscribe((response) => {
-      console.log(response);
       this.router.navigate(['/']);
     });
   }

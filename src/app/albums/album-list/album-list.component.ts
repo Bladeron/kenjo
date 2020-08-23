@@ -1,22 +1,25 @@
-import { Component, OnInit } from "@angular/core";
-import { AlbumService } from "../album.service";
+import { Component, OnInit } from '@angular/core';
+import { AlbumService } from '../album.service';
 import { Album } from '../album.model';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { filterByAlbum } from '../../utils/filter-function';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-album-list',
-  templateUrl: './album.component.html',
-  styleUrls: ['./album.component.css']
+  templateUrl: './album-list.component.html',
+  styleUrls: ['./album-list.component.css'],
 })
-
 export class AlbumComponent implements OnInit {
-
   albums: any = [];
   isLoading = false;
   private artistId: string;
 
-  constructor(public albumService: AlbumService, public router: Router, public activatedRoute: ActivatedRoute ) { }
+  constructor(
+    public albumService: AlbumService,
+    public router: Router,
+    public activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.isLoading = true;
@@ -27,14 +30,13 @@ export class AlbumComponent implements OnInit {
         this.isLoading = true;
 
         this.albumService.getAllAlbums().subscribe((albumData: Array<any>) => {
+          console.log(albumData);
           this.isLoading = false;
           this.albums = filterByAlbum(albumData, this.artistId);
-          console.log('ID', this.artistId)
-          console.log('ALBUMS', this.albums)
         });
       } else {
         this.albumService.getAllAlbums().subscribe((albumData) => {
-          
+          console.log(albumData);
           this.isLoading = false;
           this.albums = albumData;
         });
@@ -42,17 +44,14 @@ export class AlbumComponent implements OnInit {
     });
   }
 
-
-  getAll() {
-    console.log('component')
-    return this.albumService.getAllAlbums().subscribe(data => console.log(data))
-  }
-
-  onDelete(albumId: string){
+  onDelete(albumId: string) {
     this.isLoading = true;
     this.albumService.deleteAlbum(albumId).subscribe(() => {
+      this.albumService.getAllAlbums().subscribe((albumsData) => {
+        this.albums = albumsData;
+      });
       this.isLoading = false;
-      this.router.navigate(['/']); 
+      //this.router.navigate(['/']);
     });
   }
 }

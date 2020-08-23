@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AlbumComponent } from './albums/album-list/album.component';
+import { AlbumComponent } from './albums/album-list/album-list.component';
 import { AlbumCreateComponent } from './albums/album-create/album-create.component';
 import { AppComponent } from './app.component';
 import { ArtistCreateComponent } from './artists/artist-create/artist-create.component';
@@ -19,8 +19,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-
-export class AppRoutingModule { }
-
+export class AppRoutingModule {}

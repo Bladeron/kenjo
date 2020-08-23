@@ -28,7 +28,6 @@ export class ArtistListComponent implements OnInit {
   }
 
   getAll() {
-    console.log('component')
     return this.artistService.getAllArtists().subscribe(data => console.log(data))
   }
 
