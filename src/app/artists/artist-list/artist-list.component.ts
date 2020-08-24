@@ -24,7 +24,6 @@ export class ArtistListComponent implements OnInit {
   getAll() {
     return this.artistService
       .getAllArtists()
-      .subscribe((data) => console.log(data));
   }
 
   onDelete(albumId: string) {
