@@ -1,7 +1,7 @@
-<mat-card>
+<div class="album-card">
   <mat-spinner *ngIf="isLoading"></mat-spinner>
   <form [formGroup]="form" (submit)="onSaveAlbum()" *ngIf="!isLoading">
-    <mat-form-field>
+    <mat-form-field appearance="none">
       <input
         matInput
         type="text"
@@ -11,7 +11,7 @@
       <mat-error *ngIf="form.get('title').invalid">Title is required</mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="none" color="accent">
       <mat-label>Select artist</mat-label>
       <mat-select formControlName="artistId" [value]=artistId>
         <mat-option *ngFor="let artist of artistList" [value]="artist._id">
@@ -20,7 +20,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="mat-input-element" appearance="none">
       <input
         matInput
         type="text"
@@ -29,7 +29,7 @@
       />
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="none"> 
       <input
         matInput
         type="text"
@@ -38,6 +38,6 @@
       />
     </mat-form-field>
 
-    <button mat-raised-button color="accent" type="submit">Save Album</button>
+    <button mat-raised-button type="submit">Save Album</button>
   </form>
-</mat-card>
+</div>

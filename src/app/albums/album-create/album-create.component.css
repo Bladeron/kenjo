@@ -3,10 +3,33 @@ textarea {
   width: 100%;
 }
 
+.album-card {
+  background-color: transparent;
+  width: 50%;
+}
+
 mat-spinner {
   margin: auto;
+}
+
+mat-form-field {
+  background-color: white;
+  opacity: 0.5;
+  border-radius: 5px;
+  margin: 10px 0px 15px 10px;
+  padding: 0px 0px 0px 10px;
+}
+
+
+button {
+  margin-top: 20px;
+  background-color: rgb(61, 42, 95);
+  color: white;
+  float:right;
 }
 
 input[type="file"] {
   visibility: hidden;
 }
+
+
