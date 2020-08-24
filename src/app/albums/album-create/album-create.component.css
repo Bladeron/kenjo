@@ -32,4 +32,10 @@ input[type="file"] {
   visibility: hidden;
 }
 
+.mat-input-element::placeholder{
+  color: rgb(138, 78, 194);
+  font-weight: 500;
+}
+
+
 
