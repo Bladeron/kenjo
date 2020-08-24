@@ -2,11 +2,12 @@ body {
   background-image: url(/assets/images/background.jpg);
   background-size: auto;
   background-repeat: no-repeat;
+  height: 100vh;
 
 }
 
 main {
-  height: 100vh;
+  height: 80vh;
   width: 80%;
   margin: 1rem auto;
 }

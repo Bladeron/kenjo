@@ -6,8 +6,8 @@
     </mat-expansion-panel-header>
 
     <p>{{ artist.photoUrl }}</p>
-    <p>{{ artist.birthdate }}</p>
-    <p>{{ artist.deathDate }}</p>
+    <p>{{ artist.birthdate | date: 'dd/MM/yyyy'}}</p>
+    <p>{{ artist.deathDate | date: 'dd/MM/yyyy' }}</p>
     <mat-action-row>
       <a mat-button color="primary" [routerLink]="['/albums/', artist._id]">Albums from this artist</a>
       <a mat-button color="primary" [routerLink]="['/edit/artist/', artist._id]">EDIT</a>

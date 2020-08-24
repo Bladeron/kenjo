@@ -3,7 +3,9 @@ import { AlbumService } from '../album.service';
 import { Album } from '../album.model';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { filterByAlbum } from '../../utils/filter-function';
+import { addName } from '../../utils/addName-function';
 import { Subscription } from 'rxjs';
+import { ArtistService } from 'src/app/artists/artist.service';
 
 @Component({
   selector: 'app-album-list',
@@ -13,12 +15,15 @@ import { Subscription } from 'rxjs';
 export class AlbumComponent implements OnInit {
   albums: any = [];
   isLoading = false;
+  artistList: any = [];
+  enrichedList: any = [];
   private artistId: string;
 
   constructor(
     public albumService: AlbumService,
     public router: Router,
-    public activatedRoute: ActivatedRoute
+    public activatedRoute: ActivatedRoute,
+    private artistService: ArtistService
   ) {}
 
   ngOnInit() {
@@ -32,13 +37,19 @@ export class AlbumComponent implements OnInit {
         this.albumService.getAllAlbums().subscribe((albumData: Array<any>) => {
           console.log(albumData);
           this.isLoading = false;
+          this.enrichedList = addName(albumData, this.artistList);
           this.albums = filterByAlbum(albumData, this.artistId);
         });
       } else {
-        this.albumService.getAllAlbums().subscribe((albumData) => {
-          console.log(albumData);
-          this.isLoading = false;
-          this.albums = albumData;
+        this.artistService.getAllArtists().subscribe((artistData) => {
+          this.artistList = artistData;
+
+          this.albumService.getAllAlbums().subscribe((albumData: any) => {
+            console.log(albumData);
+            this.isLoading = false;
+            this.enrichedList = addName(albumData, this.artistList);
+            this.albums = this.enrichedList;
+          });
         });
       }
     });
