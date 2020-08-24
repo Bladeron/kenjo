@@ -8,7 +8,7 @@ export function addName(albumData: Array<any>, artistList) {
   console.log(mapped)
 
   albumData.forEach((e) => {
-    e.name = mapped[e.artistId];
+    e.artistName = mapped[e.artistId];
   });
 
   console.log('albumdata', albumData)
