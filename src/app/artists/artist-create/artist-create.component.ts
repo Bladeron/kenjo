@@ -11,11 +11,12 @@ import { Artist } from '../artist.model';
 })
 export class ArtistCreateComponent implements OnInit {
   isLoading = false;
+  artist: Artist; 
+  
   form: FormGroup;
   private mode = 'create';
   private artistId: string;
-  artist: Artist; 
-
+  
   constructor(public artistService: ArtistService, public route: ActivatedRoute, public router: Router) {}
 
   ngOnInit() {

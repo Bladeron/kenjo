@@ -20,22 +20,18 @@ mat-form-field {
   padding: 0px 0px 0px 10px;
 }
 
-
 button {
   margin-top: 20px;
   background-color: rgb(61, 42, 95);
   color: white;
-  float:right;
+  float: right;
 }
 
 input[type="file"] {
   visibility: hidden;
 }
 
-.mat-input-element::placeholder{
+.mat-input-element::placeholder {
   color: rgb(138, 78, 194);
   font-weight: 500;
 }
-
-
-

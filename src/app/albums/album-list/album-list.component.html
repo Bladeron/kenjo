@@ -1,14 +1,25 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 <div multi="true" *ngIf="albums.length > 0 && !isLoading" class="card-wrapper">
   <mat-card-content *ngFor="let album of albums" class="card">
-    <p class="title"><a [routerLink]="['/albums', album.artistId]">{{ album.artistName}}</a>
+    <p class="title">
+      <a [routerLink]="['/albums', album.artistId]">{{ album.artistName }}</a>
+    </p>
     <p>{{ album.title }} - {{ album.year }}</p>
     <p>{{ album.genre }}</p>
-    <img class ="cd-cover" src="assets/images/nocover.jpg" width="70%" alt="CD placeholder">
+    <img
+      class="cd-cover"
+      src="assets/images/nocover.jpg"
+      width="70%"
+      alt="CD placeholder"
+    />
     <p class="info">
       <a mat-button color="primary" [routerLink]="['/edit', album._id]">EDIT</a>
-      <button mat-button color="warn" (click)="onDelete(album._id)">DELETE</button>
+      <button mat-button color="warn" (click)="onDelete(album._id)">
+        DELETE
+      </button>
     </p>
   </mat-card-content>
 </div>
-<p class="info-text mat-body-1" *ngIf="albums.length <= 0 && !isLoading">No albums added yet!</p>
+<p class="info-text mat-body-1" *ngIf="albums.length <= 0 && !isLoading">
+  No albums added yet!
+</p>

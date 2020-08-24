@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { AlbumService } from '../album.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Album } from '../album.model';
-import { Artist } from 'src/app/artists/artist.model';
 import { ArtistService } from 'src/app/artists/artist.service';
+import { Artist } from '../../artists/artist.model';
 
 @Component({
   selector: 'app-album-create',
@@ -14,11 +14,12 @@ import { ArtistService } from 'src/app/artists/artist.service';
 export class AlbumCreateComponent implements OnInit {
   isLoading = false;
   form: FormGroup;
+  album: Album;
+  artistList: Artist;
+  
   private mode = 'create';
   private albumId: string;
-  album: Album;
-  artistList: any = [];
-
+  
   constructor(
     public albumService: AlbumService,
     public route: ActivatedRoute,
@@ -35,9 +36,8 @@ export class AlbumCreateComponent implements OnInit {
       genre: new FormControl(null, { validators: [Validators.required] }),
     });
 
-    this.artistService.getAllArtists().subscribe((artistData) => {
+    this.artistService.getAllArtists().subscribe((artistData: Artist) => {
       this.artistList = artistData;
-
     });
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {

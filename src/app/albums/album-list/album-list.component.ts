@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AlbumService } from '../album.service';
-import { Album } from '../album.model';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { filterByAlbum } from '../../utils/filter-function';
 import { addName } from '../../utils/addName-function';
-import { Subscription } from 'rxjs';
 import { ArtistService } from 'src/app/artists/artist.service';
 
 @Component({
@@ -17,6 +15,7 @@ export class AlbumComponent implements OnInit {
   isLoading = false;
   artistList: any = [];
   enrichedList: any = [];
+
   private artistId: string;
 
   constructor(
@@ -35,7 +34,6 @@ export class AlbumComponent implements OnInit {
         this.isLoading = true;
 
         this.albumService.getAllAlbums().subscribe((albumData: Array<any>) => {
-          console.log(albumData);
           this.isLoading = false;
           this.enrichedList = addName(albumData, this.artistList);
           this.albums = filterByAlbum(albumData, this.artistId);
@@ -45,7 +43,6 @@ export class AlbumComponent implements OnInit {
           this.artistList = artistData;
 
           this.albumService.getAllAlbums().subscribe((albumData: any) => {
-            console.log(albumData);
             this.isLoading = false;
             this.enrichedList = addName(albumData, this.artistList);
             this.albums = this.enrichedList;

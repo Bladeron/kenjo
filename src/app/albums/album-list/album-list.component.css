@@ -14,16 +14,12 @@
   flex-direction: column;
   transition: 0.4s ease-out;
   box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.365);
-  background-image: linear-gradient(45deg, #FF922F, #E600FF);
-  text-align:center;
+  background-image: linear-gradient(45deg, #ff922f, #e600ff);
+  text-align: center;
 }
 
 .card:hover {
   background-image: linear-gradient(45deg, #faa555, #e631fa);
-}
-
-.info {
-  display: none;
 }
 
 .card:hover .info {
@@ -33,6 +29,10 @@
   bottom: 20px;
   width: 100%;
   text-align: center;
+}
+
+.info {
+  display: none;
 }
 
 .title {
@@ -52,5 +52,3 @@
 a {
   color: rgb(197, 195, 195);
 }
-
-
