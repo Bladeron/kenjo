@@ -51,7 +51,6 @@ export class AlbumComponent implements OnInit {
         this.albums = albumsData;
       });
       this.isLoading = false;
-      //this.router.navigate(['/']);
     });
   }
 }

@@ -1,0 +1,37 @@
+.card-wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin: 20px;
+  width: 200px;
+  height: 250px;
+  border-radius: 15px;
+  padding: 1.5rem;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  transition: 0.4s ease-out;
+  box-shadow: 7px 7px 10px rgb(65, 65, 65);
+}
+
+.card:hover {
+  background: rgb(177, 177, 177);
+}
+
+.info {
+  display: none;
+}
+
+.card:hover .info {
+  display: inline;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+

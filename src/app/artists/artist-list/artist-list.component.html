@@ -9,6 +9,7 @@
     <p>{{ artist.birthdate }}</p>
     <p>{{ artist.deathDate }}</p>
     <mat-action-row>
+      <a mat-button color="primary" [routerLink]="['/albums/', artist._id]">Albums from this artist</a>
       <a mat-button color="primary" [routerLink]="['/edit/artist/', artist._id]">EDIT</a>
       <button mat-button color="warn" (click)="onDelete(artist._id)">DELETE</button>
     </mat-action-row>

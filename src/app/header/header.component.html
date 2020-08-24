@@ -1,12 +1,23 @@
-<mat-toolbar color="primary">
-  <span><a routerLink="/">Music board</a></span>
-  <span class="spacer"></span>
-  <ul>
-    <li>
-      <a mat-button routerLink="/albums/create" routerLinkActive="mat-accent">New Album</a>
-    </li>
-    <li>
-      <a mat-button routerLink="/artist/create" routerLinkActive="mat-accent">New Artist</a>
-    </li>
-  </ul>
+<mat-toolbar class="wrapper">
+
+  <a [routerLink]="['/']"><img class ="header-image"src="assets/images/logo.png" alt="App logo"></a>
+
+  <div class="menu">
+    <ul>
+      <li>
+        <a mat-button routerLink="/albums/list" routerLinkActive="mat-accent">Albums list</a>
+      </li>
+      <li>
+        <a mat-button routerLink="/artist/list" routerLinkActive="mat-accent">Artists list</a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a mat-button routerLink="/albums/create" routerLinkActive="mat-accent">New Album</a>
+      </li>
+      <li>
+        <a mat-button routerLink="/artist/create" routerLinkActive="mat-accent">New Artist</a>
+      </li>
+    </ul>
+  </div>
 </mat-toolbar>
